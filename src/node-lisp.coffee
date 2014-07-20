@@ -5,10 +5,10 @@ path = require 'path'
 class SBCL
 
   constructor: (fpath) ->
-    basePath = path.join (path.dirname fpath), (path.basename fpath)
+    basePath = path.join (path.dirname fpath), (path.basename fpath, '.lisp')
     lispPath = basePath + '.lisp'
     exePath = basePath + '.exe'
-    if fs.exists exePath
+    if fs.existsSync exePath
       cmd = spawn exePath
       cmd.stdin.setEncoding 'utf-8'
       cmd.stdout.setEncoding 'utf-8'
@@ -22,8 +22,12 @@ class SBCL
       @stdout = cmd.stdout
 
   write: (str) ->
-    @stdin.write str
-    @stdin.end()
+    try
+      data = JSON.stringify str
+      @stdin.write data
+      @stdin.end()
+    catch err
+      console.log err
 
   use: (fn) ->
     stdout = ''

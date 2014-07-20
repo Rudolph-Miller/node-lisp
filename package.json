@@ -1,7 +1,7 @@
 {
 	"author": "Rudolph-Miller",
 		"name": "node-lisp",
-		"version": "1.0.6",
+		"version": "1.0.7",
 		"keywords": ["common lisp", "lisp", "coffeescript"],
 		"description": "connection of lisp. before use you have to install sbcl",
 		"repository": {
