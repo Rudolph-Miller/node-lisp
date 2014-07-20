@@ -34,6 +34,10 @@ class SBCL
     @stdout.on 'data', (data) ->
       stdout += data
     @stdout.on 'end', ->
-      fn stdout.replace(/NIL/g, '')
+      data = stdout.replace(/NIL/g, '')
+      try
+        fn JSON.parse(data)
+      catch
+        fn data
 
 exports.SBCL = SBCL
