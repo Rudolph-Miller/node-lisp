@@ -5,7 +5,9 @@ path = require 'path'
 class SBCL
 
   constructor: (fpath) ->
-    exePath = path.join (path.dirname fpath), ((path.basename fpath, '.lisp') + '.exe')
+    basePath = path.join (path.dirname fpath), (path.basename fpath)
+    lispPath = basePath + '.lisp'
+    exePath = basePath + '.exe'
     if fs.exists exePath
       cmd = spawn exePath
       cmd.stdin.setEncoding 'utf-8'
@@ -13,7 +15,7 @@ class SBCL
       @stdin = cmd.stdin
       @stdout = cmd.stdout
     else
-      cmd = spawn 'sbcl', ['--script', fpath]
+      cmd = spawn 'sbcl', ['--script', lispPath]
       cmd.stdin.setEncoding 'utf-8'
       cmd.stdout.setEncoding 'utf-8'
       @stdin = cmd.stdin
