@@ -20,6 +20,9 @@ class SBCL
       cmd.stdout.setEncoding 'utf-8'
       @stdin = cmd.stdin
       @stdout = cmd.stdout
+    cmd.stderr.setEncoding 'utf-8'
+    cmd.stderr.on 'data', (data) ->
+      console.log data
 
   write: (str) ->
     try
