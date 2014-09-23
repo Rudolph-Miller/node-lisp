@@ -12,3 +12,5 @@ h3 Author: Rudolph Miller
 2. Methods
 	* use = (fn) -> fn (stdout-of-lisp-program)
 	* write = (str) -> write str to stdin of lisp-program
+
+If you think of using the other of SBCL, please fork it and send me pullrequest.
